@@ -1,6 +1,0 @@
-[submodule "site/themes/shared-bulma-theme"]
-	path = site/themes/shared-bulma-theme
-	url = https://github.com/yuzu-mirror/shared-bulma-theme.git
-[submodule "scripts/shared-hugo-scripts"]
-	path = scripts/shared-hugo-scripts
-	url = https://github.com/yuzu-mirror/shared-hugo-scripts.git
