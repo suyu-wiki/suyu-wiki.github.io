@@ -8,13 +8,13 @@ const tomlify = require("@iarna/toml");
 const execa = import("execa");
 
 const tenant = process.env.TENANT;
-
+console.log(tenant)
 const fsPathCode = `./${tenant}-games-wiki/games`;
 const fsPathHugo = "../../../site";
 const fsPathHugoContent = `${fsPathHugo}/content/game`;
 const fsPathHugoBoxart = `${fsPathHugo}/static/images/game/boxart`;
 const fsPathHugoIcon = `${fsPathHugo}/static/images/game/icons`;
-const fsPathHugoScreenshots = `${fsPathHugo}/static/images/screenshots0`;
+const fsPathHugoScreenshots = `${fsPathHugo}/static/images/screenshots`;
 const fsPathHugoSavefiles = `${fsPathHugo}/static/savefiles/`;
 
 process.on("unhandledRejection", (err) => {
@@ -57,8 +57,8 @@ async function run() {
 
   // Fetch game files stored in games-wiki repository.
   gitPull(
-    `./${tenant}-games-wiki`,
-    `https://github.com/${tenant}-wiki/${tenant}-games-wiki.git`
+    `./suyu-games-wiki`,
+    `https://github.com/suyu-wiki/suyu-games-wiki.git`
   );
 
   // Loop through each game and process it.
