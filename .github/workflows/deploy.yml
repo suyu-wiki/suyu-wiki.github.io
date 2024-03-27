@@ -27,8 +27,8 @@ jobs:
       run: sudo apt-get update
     - name: Build
       env:
-        GITHUB_WIKI_URL: 'https://github.com/yuzu-mirror/yuzu.wiki.git'
-        TENANT: 'yuzu'
+        GITHUB_WIKI_URL: 'https://github.com/suyu-wiki/suyu-games-wiki.git'
+        TENANT: 'suyu'
       run: ./.ci/build.sh
     - name: Deploy
       if: ${{ ! github.base_ref }}
