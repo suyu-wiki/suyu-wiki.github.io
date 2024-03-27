@@ -1,4 +1,4 @@
-baseurl = "https://yuzu-mirror.github.io/"
+baseurl = "https://suyu-wiki.github.io/"
 languageCode = "en-us"
 
 DefaultContentLanguage = "en"
@@ -49,10 +49,10 @@ timeout = 300000
   name = "Profile"
   weight = 7
   identifier = "profile"
-  url = "https://profile.yuzu-mirror.github.io"
+  url = "https://profile.suyu-wiki.github.io"
 
 [Params]
-  Tenant = "yuzu"
+  Tenant = "suyu"
   BulmaPrimaryShade = "is-dark"
   DiscordURL = "https://discord.gg/u77vRWY"
   TwitterURL = "https://twitter.com/yuzuemu"
@@ -66,9 +66,9 @@ timeout = 300000
 
 [Languages]
   [Languages.en]
-    title = "yuzu"
+    title = "Suyu"
     tagline = "Nintendo Switch Emulator"
-    description = "yuzu is a highly experimental open-source emulator for the Nintendo Switch."
+    description = "Suyu is a fork of Yuzu, a highly experimental open-source emulator for the Nintendo Switch."
     weight = 1
 
 [module]

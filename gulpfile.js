@@ -58,7 +58,7 @@ gulp.task('final:publish', (done) => {
     done();
 });
 
-const cname = 'yuzu-mirror.github.io';
+const cname = 'suyu-wiki.github.io';
 let finalCommand = null;
 let ephemeralURL = null;
 
