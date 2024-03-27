@@ -1,0 +1,79 @@
+{{ define "header" }}
+{{ $banner := (.Page.Resources.ByType "image").GetMatch "banner.png" }}
+{{ $resized := $banner.Resize "1280x q99 jpg" }}
+{{ $author := index .Site.Data.authors ( .Params.author | default "" ) }}
+{{ $coauthors := split ( .Params.coauthor | default "" ) "," }}
+<div class="mb-md blog-entry-header single" style="background-image: url('{{ $resized.Permalink }}');background-repeat:no-repeat;background-size:contain;background-position:center;"></div>
+<div class="has-text-centered">
+    <div>
+        <span class="title px-md py-sm">{{ .Title }}</span>
+    </div>
+    {{/* if $author && .Params.coauthor */}}
+    {{ if and $author .Params.coauthor }}
+    <div>
+        <p class="h3 px-md py-sm">
+            Written by <a href="https://community.citra-emu.org/u/{{ $author.key }}/summary">{{ $author.name }}</a>
+            {{/*  if len($coauthors) < 2  */}}
+            {{ if lt (len $coauthors) 2 }}
+            {{ $coauthor := index .Site.Data.authors ( .Params.coauthor | default "" ) }}
+            and <a href="https://community.citra-emu.org/u/{{ $coauthor.key }}/summary">{{ $coauthor.name }}</a>
+            {{ else }}
+            in collaboration with 
+                {{ $length := len $coauthors }}
+                {{ range $i, $name := $coauthors }}
+                {{ $coauthor := index $.Site.Data.authors $name }}
+                    {{/*  if i == (length -1)  */}}
+                    {{ if eq $i (sub $length 1) }}
+                    and
+                    {{ end }}
+                <a href="https://community.citra-emu.org/u/{{ $coauthor.key }}/summary">{{ $coauthor.name }}</a>{{- if lt $i (sub $length 1) -}},{{- end -}}
+                {{/*  if i < (length - 1)  */}}
+                {{ end }}
+            {{ end }}
+            on {{ .Date.Format $.Site.Params.fmt.Date }}
+        </p>
+    </div>
+    {{ else if $author }}
+    <div>
+        <span class="h3 px-md py-sm">
+            Written by <a href="https://community.citra-emu.org/u/{{ $author.key }}/summary">{{ $author.name }}</a>
+            on {{ .Date.Format $.Site.Params.fmt.Date }}
+        </span>
+    </div>
+    {{ else }}
+    <div>
+        <span class="h3 px-md py-sm">
+            Written on {{ .Date.Format $.Site.Params.fmt.Date }}
+        </span>
+    </div>
+    {{ end }}
+</div>
+{{ end }}
+
+{{ define "main" }}
+<section class="section content pt-sm">
+    <br>
+    {{ .Content }}
+</section>
+
+{{ if .Params.forum }}
+<div class="has-text-centered">
+    <a class="pagination-next" href="https://community.citra-emu.org/t/{{ .Params.forum }}">Continue the discussion on our forums.</a>
+</div>
+{{ end }}
+
+{{ end }}
+
+{{ define "css" }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css" type="text/css" />
+{{ end }}
+
+{{ define "scripts" }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    window.addEventListener("DOMContentLoaded", function() {
+        baguetteBox.run('.is-img-preview');
+    });
+</script>
+{{ end }}

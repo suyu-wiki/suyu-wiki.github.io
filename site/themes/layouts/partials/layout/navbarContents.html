@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="{{ .Site.BaseURL }}">
+            {{ partial "inline/menuSvg" }}
+        </a>
+
+        <div class="burger navbar-burger {{ .Site.Params.BulmaPrimaryShade }}" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        <div class="navbar-start">
+            {{ $currentPage := . }} {{ range .Site.Menus.main }} {{ if .HasChildren }}
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-item px-lg">
+                    {{ .Name }}
+
+                    <span class="icon">
+                        <i class="fas fa-caret-down"></i>
+                    </span>
+                </a>
+                <div class="navbar-dropdown">
+                    {{ range .Children }}
+                    <a class="navbar-item{{ if $currentPage.IsMenuCurrent "main" . }} is-active{{ end }}" href="{{ .URL }}">
+                        {{ .Name }}
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+            {{ else }}
+            <a class="navbar-item px-lg{{ if $currentPage.IsMenuCurrent "main" . }} is-active{{ end }}" href="{{ .URL }}">
+                {{ .Name }}
+            </a>
+            {{ end }} {{ end }}
+
+            <a class="navbar-item px-lg is-hidden-desktop" href="{{ .Site.Params.DiscordURL }}" target="_blank">
+                <i class="fab fa-discord mr-sm"></i> Discord
+            </a>
+            <a class="navbar-item px-lg is-hidden-desktop" href="{{ .Site.Params.TwitterURL }}" target="_blank">
+                <i class="fab fa-twitter mr-sm"></i> Twitter
+            </a>
+            <a class="navbar-item px-lg is-hidden-desktop" href="{{ .Site.Params.GithubURL }}" target="_blank">
+                <i class="fab fa-github mr-sm"></i> GitHub
+            </a>
+        </div>
+
+        <div class="navbar-end">
+            <!-- Navbar icons -->
+            <a class="navbar-item px-lg is-hidden-touch" href="{{ .Site.Params.DiscordURL }}" target="_blank">
+                <span class="icon">
+                    <i class="fab fa-2x fa-discord"></i>
+                </span>
+            </a>
+            <a class="navbar-item px-lg is-hidden-touch" href="{{ .Site.Params.TwitterURL }}" target="_blank">
+                <span class="icon">
+                    <i class="fab fa-2x fa-twitter"></i>
+                </span>
+            </a>
+            <a class="navbar-item px-lg is-hidden-touch" href="{{ .Site.Params.GithubURL }}" target="_blank">
+                <span class="icon">
+                    <i class="fab fa-2x fa-github"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+</div>

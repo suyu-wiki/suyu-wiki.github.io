@@ -1,0 +1,83 @@
+{{ define "main" }}
+<div class="container">
+    <section class="section">
+        <h1 class="title">{{ .Title }}</h1>
+        <div class="content">
+            {{ .Content }}
+        </div>
+
+        <section class="section">
+            <div class="content">
+                <h3 class="is-size-3">Pending Bounties</h3>
+                {{ range where .Site.Data.bounties "Status" "Unassigned" }}
+                <div style="margin-bottom: 12px;">
+                    <div class="has-text-weight-semibold">{{ .Description }}</div>
+                    <div style="margin-left: 48px;">
+                        <table class="table is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <th class="has-text-weight-normal">Date Submitted</th>
+                                    <th class="has-text-weight-normal">Requester</th>
+                                    <th class="has-text-weight-normal">Amount</th>
+                                    <th class="has-text-weight-normal">Expires Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{ range .Requestors }}
+                                <tr>
+                                    <td>{{ .DateSubmitted }}</td>
+                                    <td>{{ .Name }}</td>
+                                    <td>{{ .Amount }}</td>
+                                    <td>{{ .DateExpires }}</td>
+                                </tr>
+                                {{ end }}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="content">
+                <h3 class="is-size-3">Completed Bounties</h3>
+                {{ range where .Site.Data.bounties "Status" "Completed" }}
+                <div class="py-3">
+                    <div class="has-text-weight-semibold">{{ .Description }}</div>
+                    <div>{{ .Status }} by {{ .Developer }} - {{ .Response }}</div>
+                    <div style="margin-left: 48px;">
+                        <table class="table is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <th class="has-text-weight-normal">Date Submitted</th>
+                                    <th class="has-text-weight-normal">Requester</th>
+                                    <th class="has-text-weight-normal">Amount</th>
+                                    <th class="has-text-weight-normal">Paid</th>
+                                    <th class="has-text-weight-normal">Expires Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{ range .Requestors }}
+                                <tr>
+                                    <td>{{ .DateSubmitted }}</td>
+                                    <td>{{ .Name }}</td>
+                                    <td>{{ .Amount }}</td>
+                                    {{ if eq .Paid true }}
+                                        <td>Yes</td>
+                                    {{ else }}
+                                        <td>No</td>
+                                    {{ end }}
+                                    <td>{{ .DateExpires }}</td>
+                                </tr>
+                                {{ end }}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </section>
+
+</div>
+{{ end }}

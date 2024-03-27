@@ -1,0 +1,37 @@
+{{ if .Params.twitter }}
+<div class="mb-md blog-entry-header summary twitter" style="background-image: none;" data-href="{{ .Params.twitterUrl }}">
+    <div class="px-md has-text-weight-semibold">
+        <span class="h3">{{ .Date.Format $.Site.Params.fmt.Date }}</span> -
+        <span class="h3 moment-timeago">{{ .Date.Format $.Site.Params.fmt.ISO8601 }}</span>
+    </div>
+    <div class="mt-md px-md">
+        <span class="h3">{{ .Content }}</span>
+    </div>
+    <div class="px-md py-sm" style="position: absolute; bottom: 0; right: 0;">
+        <span class="h3">
+            <a href="{{ .Params.twitterUrl }}">View Tweet</a>
+        </span>
+    </div>
+</div>
+{{ else }}
+{{ $author := index .Site.Data.authors ( .Params.author | default "" ) }}
+{{ $original := (.Page.Resources.ByType "image").GetMatch "summary.png" }}
+{{ $resized := $original.Resize "1280x q90 jpg" }}
+<div class="mb-md blog-entry-header summary entry" style="background-image: url('{{ $resized.Permalink }}')" data-href="{{ .Permalink }}">
+    <div class="px-md">
+        <span class="title">{{ .Title }}</span>
+    </div>
+    <div class="px-md">
+        <span class="h3">{{ .Date.Format $.Site.Params.fmt.Date }}</span> -
+        <span class="h3 moment-timeago">{{ .Date.Format $.Site.Params.fmt.ISO8601 }}</span>
+    </div>
+    <div class="mt-md px-md">
+        <span class="h3 summary-text">{{ .Summary }}</span>
+    </div>
+    <div style="position: absolute; bottom: -5px; right: 0;" class="px-md py-sm has-background-dark">
+        <span class="h3">
+            <a href="{{ .Permalink }}">Read More</a>
+        </span>
+    </div>
+</div>
+{{ end }}
