@@ -25,7 +25,7 @@ async function run() {
 
   const exec = (await execa).execaSync;
   logger.info(`git clone ${process.env.GITHUB_WIKI_URL} wiki`);
-  exec("git", ["clone", process.env.GITHUB_WIKI_URL, "wiki"]);
+  exec("git", ["clone", "https://github.com/suyu-wiki/suyu-games-wiki", "wiki"]);
 
   if (!fs.existsSync(outputDirectory)) {
     logger.info(`Creating missing output directory: ${outputDirectory}`);

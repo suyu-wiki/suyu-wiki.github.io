@@ -58,7 +58,7 @@ async function run() {
   // Fetch game files stored in games-wiki repository.
   gitPull(
     `./${tenant}-games-wiki`,
-    `https://github.com/${tenant}-mirror/${tenant}-games-wiki.git`
+    `https://github.com/${tenant}-wiki/${tenant}-games-wiki.git`
   );
 
   // Loop through each game and process it.
