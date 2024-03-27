@@ -57,7 +57,7 @@ timeout = 300000
   DiscordURL = "https://discord.gg/u77vRWY"
   TwitterURL = "https://twitter.com/yuzuemu"
   GithubURL = "https://github.com/yuzu-mirror/yuzu"
-  GithubGamesWikiURL = "https://github.com/yuzu-mirror/yuzu-games-wiki"
+  GithubGamesWikiURL = "https://github.com/suyu-wiki/suyu-games-wiki"
   GoogleAnalyticsTrackingId = "UA-112443698-1"
 
 [Params.fmt]
