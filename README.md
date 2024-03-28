@@ -1,4 +1,6 @@
-This repo contains the sources for the yuzu-emu website at https://yuzu-emu.org/
+This repo contains the sources for the Suyu compatability page.
+
+# Note: we do not condone the use of this page for piracy. This page is intended to be used in the context of legal backups of games that you own.
 
 # Local Development
 
