@@ -1,4 +1,3 @@
-require("checkenv").check();
 
 const fs = require("fs-extra");
 const path = require("path");
@@ -7,9 +6,8 @@ const fetch = require("node-fetch");
 const tomlify = require("@iarna/toml");
 const execa = import("execa");
 
-const tenant = process.env.TENANT;
-console.log(tenant)
-const fsPathCode = `./${tenant}-games-wiki/games`;
+
+const fsPathCode = `./suyu-games-wiki/games`;
 const fsPathHugo = "../../../site";
 const fsPathHugoContent = `${fsPathHugo}/content/game`;
 const fsPathHugoBoxart = `${fsPathHugo}/static/images/game/boxart`;
